@@ -1,4 +1,4 @@
-import {useRef, type PropsWithChildren } from "react";
+import { type PropsWithChildren } from "react";
 import Logo from "./components/icons/logo";
 import { SocialIcon } from "./components/icons/social";
 import { Icon } from "./components/icons/Icon";
@@ -74,25 +74,43 @@ const Navbar = () => {
   // TODO : ADD SCROLL EFFECTS
   // TODO : ADD RESPONSIVE MENU
   // TODO : ADD ACTIVE LINK STYLES
-  // TODO : FIX HAMBURGER MENU
+  // TODO : FIX HAMBURGER MENU ** BUGS
 
-  const { menuOpen, setMenuOpen, scrolled, setScrolled } = useNavbar();
+  const { menuOpen, setMenuOpen, scrolled } = useNavbar();
+
+  const _content = `
+    flex items-center justify-evenly flex-col 
+    text-tertiary-100 gap-x-7
+    w-full h-screen 
+    absolute -left-full top-0
+    transition-all duration-200 ease-in-out
+    md:flex-row md:justify-between md:w-full
+    md:static
+    md:width-auto md:h-auto 
+    md:transition-none
+    max-md:data-[active=true]:left-0
+    max-md:data-[active=true]:bg-gray-950
+    max-md:data-[active=true]:p-10
+    group
+  `;
 
   return (
-    <nav className="flex w-full items-center justify-between backdrop-blur-md fixed left-0 top-0 mx-auto p-6 z-50 [&.scroll]:bg-white/50 [&.scroll]:border-b [&.scroll]:border-b-gray-200 [&.scroll]:py-4 [&.scroll]:shadow-3xl transition-all ease-in-out duration-300">
-      <aside className="flex items-center gap-x-3"> 
+    <nav data-scroll={scrolled} className="flex w-full items-center justify-between backdrop-blur-md fixed left-0 top-0 mx-auto p-6 z-50 data-[scroll=true]:bg-white/50 data-[scroll=true]:border-b data-[scroll=true]:border-b-gray-200 data-[scroll=true]:py-4 data-[scroll=true]:shadow-3xl transition-all ease-in-out duration-300">
+      <aside className="flex items-center gap-x-3 w-full"> 
         <Logo dark={false} />
         <strong>Unbundle Ai</strong>
       </aside>
-      <ul className="flex text-tertiary-100 gap-x-7">
-        <li><a href="#" className="hover:text-primary-100 font-semibold">Deconstruct</a></li>
-        <li><a href="#" className="hover:text-primary-100 font-semibold">Blueprints</a></li>
-        <li><a href="#" className="hover:text-primary-100 font-semibold">History</a></li>
-      </ul>
-      <ul className="flex gap-x-7">
-        <li><a href="#" className="hover:text-primary-200 font-semibold">Log in</a></li>
-        <li><a href="#" className="hover:bg-primary-200 font-semibold text-white bg-primary-100 px-6 py-2 rounded-xl shadow-black-op shadow-lg">Start Free</a></li>
-      </ul>
+      <aside data-active={menuOpen} className={_content}>
+        <ul className="flex text-tertiary-100 gap-x-7 group-data-[active=true]:flex-col group-data-[active=true]:justify-center group-data-[active=true]:text-center group-data-[active=true]:w-full group-data-[active=true]:gap-y-15">
+          <li><a href="#" className="hover:text-primary-100 font-semibold group-data-[active=true]:hover:text-secondary-50">Deconstruct</a></li>
+          <li><a href="#" className="hover:text-primary-100 font-semibold group-data-[active=true]:hover:text-secondary-50">Blueprints</a></li>
+          <li><a href="#" className="hover:text-primary-100 font-semibold group-data-[active=true]:hover:text-secondary-50">History</a></li>
+        </ul>
+        <ul className="flex gap-x-7 group-data-[active=true]:justify-center group-data-[active=true]:text-center group-data-[active=true]:w-full group-data-[active=true]:gap-x-10">
+          <li><a href="#" className="hover:text-primary-200 font-semibold">Log in</a></li>
+          <li><a href="#" className="hover:bg-primary-200 font-semibold text-white bg-primary-100 px-6 py-2 rounded-xl shadow-black-op shadow-lg">Start Free</a></li>
+        </ul>
+      </aside>
       <MenuButton state={menuOpen} click={() => setMenuOpen(!menuOpen)} />
     </nav>
   );
