@@ -8,6 +8,8 @@ import RideSvg from "./ride";
 import FlashSvg from "./flash";
 import WandSvg from "./wand";
 import LinkSvg from "./link";
+import TasksSvg from "./tasks";
+import StatsSvg from "./stats";
 
 type IconColor = 'current' | 'primary' | 'primary_200' | 'secondary_50' | 'secondary' | 'secondary_200' | 'tertiary' | 'gray_400' | 'none';
 
@@ -17,7 +19,7 @@ export interface ISvgProps {
 }
 
 export interface IconProps  {
-  name: 'add' | 'arrow_right' | 'cart' | 'ride' | 'dash' | 'dir_right' | 'flash' | 'wand' | 'link';
+  name: 'add' | 'arrow_right' | 'cart' | 'ride' | 'dash' | 'dir_right' | 'flash' | 'wand' | 'link' | 'stats' | 'tasks';
   classes?: string;
   colorHover?: IconColor;
   fillColor?: IconColor;
@@ -34,7 +36,9 @@ const svgs = {
   dir_right: DirRightSvg,
   flash: FlashSvg,
   wand: WandSvg,
-  link: LinkSvg
+  link: LinkSvg,
+  stats: StatsSvg,
+  tasks: TasksSvg
 }
 
 export const Icon = (props: IconProps) => {

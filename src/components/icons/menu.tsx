@@ -17,7 +17,7 @@ export default function MenuButton({click, state}: IMenuButtonProps) {
   `;
 
   return (
-    <button onClick={click} className="block md:hidden">
+    <button onClick={click} className="block md:hidden hover:cursor-pointer">
       <span data-enabled={state} className={_bar + "data-[enabled=true]:translate-y-2 data-[enabled=true]:rotate-45"}></span>
       <span data-enabled={state} className={_bar + "data-[enabled=true]:opacity-0"}></span>
       <span data-enabled={state} className={_bar + "data-[enabled=true]:-translate-y-2 data-[enabled=true]:-rotate-45"}></span>
