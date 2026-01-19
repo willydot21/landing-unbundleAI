@@ -25,7 +25,7 @@ export default function Navbar() {
   `;
 
   return (
-    <nav data-scroll={scrolled} className="flex w-full items-center justify-between backdrop-blur-md fixed left-0 top-0 p-6 z-50 data-[scroll=true]:bg-white/50 data-[scroll=true]:border-b data-[scroll=true]:border-b-gray-200 data-[scroll=true]:py-4 data-[scroll=true]:shadow-3xl transition-all ease-in-out duration-300">
+    <nav data-scroll={scrolled} className="flex w-full items-center justify-between backdrop-blur-md fixed left-0 top-0 p-6 z-50 data-[scroll=true]:bg-white/50 data-[scroll=true]:border-b border-b-gray-300 data-[scroll=true]:py-4 data-[scroll=true]:shadow-3xl transition-all ease-in-out duration-300">
       <aside className="flex items-center gap-x-3 md:w-1/3"> 
         <Logo dark={false} />
         <strong>Unbundle Ai</strong>
