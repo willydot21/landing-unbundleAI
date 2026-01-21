@@ -2,7 +2,7 @@ import { Icon } from "../icons/Icon";
 
 export default function AnalyzeInput() {
   return (
-    <div className="flex flex-row justify-between bg-white p-2 items-center rounded-xl shadow-black-op shadow-2xl">
+    <div className="flex flex-row justify-between bg-white p-2 items-center rounded-xl shadow-black-op shadow-2xl w-full max-w-2xl">
       <div className="flex flex-row items-center justify-center gap-x-2.5 w-full">
         <Icon name="link" classes="mx-3" /> 
         <input type="text" className="w-full focus:outline-0 placeholder-shown:text-ellipsis pr-2" placeholder="Paste URL or describe an app..."/>

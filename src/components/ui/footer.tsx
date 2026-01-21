@@ -2,7 +2,7 @@
 import Logo from "../icons/logo";
 import { SocialIcon } from "../icons/social";
 
-export const Footer = () => {
+export default function Footer() {
   return (
     <footer className="mt-32 flex flex-col sm:flex-row sm:justify-between w-full items-center bg-primary-100 px-8 py-8 xl:px-28 xl:py-14 gap-12">
       <div className="flex flex-row gap-2 min-w-fit">
