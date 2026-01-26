@@ -7,13 +7,15 @@ interface IContainerProps extends PropsWithChildren{
 
 export default function SectionContainer({ barTitle, BarLabel, children }: IContainerProps) {
   return (
-    <section className="flex flex-col rounded-xl bg-white w-full">
-      <header className="w-full flex justify-between px-8 py-3 bg-gray-50 rounded-tr-xl rounded-tl-xl items-center">
+    <section className="flex flex-col rounded-xl bg-white w-full drop-shadow-black-op shadow-black-op-200 shadow-2xl">
+      <header className="w-full flex justify-between bg-gray-50 rounded-tr-xl rounded-tl-xl items-center px-8 py-3">
         <h5 className="text-xs font-bold font-mono text-gray-400">{barTitle}</h5>
         {BarLabel} 
       </header>
       <hr className="border-gray-200 w-full"/>
-      {children}
+      <div className="px-8 py-3 pt-8 pb-10 gap-y-2 flex flex-col">
+        {children}
+      </div>
     </section>
   )
 } 

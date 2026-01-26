@@ -10,6 +10,7 @@ import WandSvg from "./wand";
 import LinkSvg from "./link";
 import TasksSvg from "./tasks";
 import StatsSvg from "./stats";
+import TickSvg from "./tick";
 
 type IconColor = 'current' | 'primary' | 'primary_200' | 'secondary_50' | 'secondary' | 'secondary_200' | 'tertiary' | 'gray_400' | 'none';
 
@@ -19,12 +20,12 @@ export interface ISvgProps {
 }
 
 export interface IconProps  {
-  name: 'add' | 'arrow_right' | 'cart' | 'ride' | 'dash' | 'dir_right' | 'flash' | 'wand' | 'link' | 'stats' | 'tasks';
+  name: 'add' | 'arrow_right' | 'cart' | 'ride' | 'dash' | 'dir_right' | 'flash' | 'wand' | 'link' | 'stats' | 'tasks' | 'tick';
   classes?: string;
   colorHover?: IconColor;
   fillColor?: IconColor;
   strokeColor?: IconColor;
-  size?: 'small' | 'medium' | 'large';
+  size?: 'small' | 'medium' | 'large'  | 'extraLarge';
 }
 
 const svgs = {
@@ -38,7 +39,8 @@ const svgs = {
   wand: WandSvg,
   link: LinkSvg,
   stats: StatsSvg,
-  tasks: TasksSvg
+  tasks: TasksSvg,
+  tick: TickSvg
 }
 
 export const Icon = (props: IconProps) => {
@@ -90,6 +92,7 @@ export const Icon = (props: IconProps) => {
     small: 'w-4 h-4',
     medium: 'w-6 h-6',
     large: 'w-8 h-8',
+    extraLarge: 'w-10 h-10'
   }[props.size || 'medium'];
 
   const SvgComponent = svgs[props.name];
@@ -98,7 +101,7 @@ export const Icon = (props: IconProps) => {
   }
 
   return( 
-    <span className={props.classes + ' ' + sizeClasses}>
+    <span className={props.classes + ' h-fit ' + sizeClasses}>
       <SvgComponent color={colors} colorHover={hover} />
     </span>
     );
