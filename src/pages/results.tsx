@@ -18,7 +18,8 @@ export default function Results() {
     <>
       <Navbar/>
       <div className="flex w-full pt-32 justify-center px-4 gap-8 max-w-8xl">
-        <SectionContainer 
+        <aside className="w-full lg:w-3/5 flex flex-col gap-y-6">
+          <SectionContainer 
           barTitle="APP SUMMARY"
           BarLabel={<Label>VERIFIED ANALYSIS</Label>}
           >
@@ -27,7 +28,7 @@ export default function Results() {
           <hr className="border-gray-200 w-full my-4"/>
           <div className="flex flex-col w-full">
             <h5 className="font-mono text-gray-400 text-xs font-semibold mb-2">MAIN PURPOSES</h5>
-            <ul className="flex flex-col text-tertiary-100 gap-y-3">
+            <ul className="flex flex-col text-tertiary-100 font-semibold gap-y-3">
               <li className="flex justify-center items-center gap-x-3 w-fit">
                 <Icon name="tick" fillColor="secondary" strokeColor="none" size="extraLarge" />
                 Facilitate real-time collaboration among remote engineering teams through shared workspaces and visual task mapping.</li>
@@ -39,12 +40,40 @@ export default function Results() {
                 Provide a centralized platform for code reviews, documentation, and version control to streamline development processes.</li>
             </ul>
           </div>
-        </SectionContainer>
-        <div className="flex flex-col w-2/5 lg:w-1/4 p-8 bg-white rounded-xl items-center justify-center gap-y-6 drop-shadow-black-op shadow-black-op-200 shadow-2xl">
-          <h5 className="text-tertiary-100 font-mono ">UNBUNDLING SCORE</h5>
-          <span className="w-1/2 h-30 bg-primary-200 rounded-full"></span>
-          <p className="text-tertiary-100 text-center"> High potential of micro-SaaS extraction</p>
-        </div>
+          </SectionContainer>
+          <SectionContainer
+          barTitle="EXTRACTED FEATURES"
+          barColor="white"
+          BarLabel={<label className="text-xxs font-bold text-gray-300 text-mono"> 12 FEATURES FOUND</label>}>
+
+          </SectionContainer>
+        </aside>
+        <aside className="w-2/5 lg:w-1/4 flex flex-col gap-y-6">
+          <div className="flex flex-col w-full p-8 bg-white rounded-xl items-center justify-center gap-y-6 drop-shadow-black-op shadow-black-op-200 shadow-2xl">
+            <h5 className="text-tertiary-100 font-mono ">UNBUNDLING SCORE</h5>
+            <span className="w-1/2 h-30 bg-primary-200 rounded-full"></span>
+            <p className="text-tertiary-100 text-center"> High potential of micro-SaaS extraction</p>
+          </div>
+          <SectionContainer
+            barTitle="QUICK ACTIONS"
+            barColor="white"
+          >
+            <ul className="flex flex-col">
+              {
+                [
+                  {label: "EXPORT JSON", icon: 'download'},
+                  {label: "COPY PITCH", icon: 'copy'},
+                  {label: "SAVE IDEA", icon: 'save'}
+                ].map(({label, icon}) => 
+                  <li key={label} className="flex justify-center items-center gap-x-3 w-fit cursor-pointer hover:text-primary-100 transition-colors">
+                    <Icon name={icon as keyof typeof IconProps['name']} fillColor="secondary" strokeColor="none" size="large" />
+                    {label}
+                  </li>
+                )
+              }
+            </ul>
+          </SectionContainer>
+        </aside>
       </div>
     </>
   )

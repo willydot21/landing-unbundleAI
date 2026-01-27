@@ -2,14 +2,22 @@ import type { PropsWithChildren, ReactElement } from "react";
 
 interface IContainerProps extends PropsWithChildren{
   barTitle: string;
-  BarLabel: ReactElement
+  barColor?: 'current' | 'gray' | 'white';
+  BarLabel?: ReactElement
 }
 
-export default function SectionContainer({ barTitle, BarLabel, children }: IContainerProps) {
+export default function SectionContainer({ barTitle, barColor = 'gray', BarLabel, children }: IContainerProps) {
+
+  const barColors = {
+    current: 'bg-current',
+    gray: 'bg-gray-50',
+    white: 'bg-white',
+  }
+
   return (
     <section className="flex flex-col rounded-xl bg-white w-full drop-shadow-black-op shadow-black-op-200 shadow-2xl">
-      <header className="w-full flex justify-between bg-gray-50 rounded-tr-xl rounded-tl-xl items-center px-8 py-3">
-        <h5 className="text-xs font-bold font-mono text-gray-400">{barTitle}</h5>
+      <header className={"w-full flex justify-between rounded-tr-xl rounded-tl-xl items-center px-8 py-3" + ' ' + barColors[barColor]}>
+        <h5 className="text-xs font-bold  font-mono text-gray-400">{barTitle}</h5>
         {BarLabel} 
       </header>
       <hr className="border-gray-200 w-full"/>
