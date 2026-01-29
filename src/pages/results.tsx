@@ -1,4 +1,5 @@
 import type { PropsWithChildren } from "react";
+import type { IconColor, IconProps } from "../components/icons/Icon";
 import Navbar from "../components/ui/navbar";
 import SectionContainer from "../components/ui/section-container";
 import SectionHeader from "../components/ui/header";
@@ -61,12 +62,12 @@ export default function Results() {
             <ul className="flex flex-col">
               {
                 [
-                  {label: "EXPORT JSON", icon: 'download'},
+                  {label: "EXPORT JSON", icon: 'download', strokeColor: 'primary' as IconColor, fillColor: undefined},
                   {label: "COPY PITCH", icon: 'copy'},
-                  {label: "SAVE IDEA", icon: 'save'}
-                ].map(({label, icon}) => 
+                  {label: "SAVE IDEA", icon: 'save'},
+                ].map(({label, icon, ...rest}) => 
                   <li key={label} className="flex justify-center items-center gap-x-3 w-fit cursor-pointer hover:text-primary-100 transition-colors">
-                    <Icon name={icon as keyof typeof IconProps['name']} fillColor="secondary" strokeColor="none" size="large" />
+                    <Icon name={icon as  IconProps['name']} fillColor="primary" {...rest} size="large" />
                     {label}
                   </li>
                 )
