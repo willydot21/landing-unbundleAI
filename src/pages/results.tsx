@@ -5,6 +5,7 @@ import SectionContainer from "../components/ui/section-container";
 import SectionHeader from "../components/ui/header";
 import Tags from "../components/Tags";
 import { Icon } from "../components/icons/Icon";
+import Alert from "../components/ui/alert";
 
 const Label = ({children}: PropsWithChildren) => {
   return (
@@ -19,7 +20,7 @@ export default function Results() {
     <>
       <Navbar/>
       <div className="flex w-full pt-32 justify-center px-4 gap-8 max-w-8xl">
-        <aside className="w-full lg:w-3/5 flex flex-col gap-y-6">
+        <aside className="w-full lg:w-3/5 flex flex-col gap-y-9">
           <SectionContainer 
           barTitle="APP SUMMARY"
           BarLabel={<Label>VERIFIED ANALYSIS</Label>}
@@ -49,7 +50,7 @@ export default function Results() {
 
           </SectionContainer>
         </aside>
-        <aside className="w-2/5 lg:w-1/4 flex flex-col gap-y-6">
+        <aside className="w-2/5 lg:w-1/4 flex flex-col gap-y-9">
           <div className="flex flex-col w-full p-8 bg-white rounded-xl items-center justify-center gap-y-6 drop-shadow-black-op shadow-black-op-200 shadow-2xl">
             <h5 className="text-tertiary-100 font-mono ">UNBUNDLING SCORE</h5>
             <span className="w-1/2 h-30 bg-primary-200 rounded-full"></span>
@@ -59,21 +60,26 @@ export default function Results() {
             barTitle="QUICK ACTIONS"
             barColor="white"
           >
-            <ul className="flex flex-col">
+            <ul className="flex flex-col gap-y-4">
               {
                 [
-                  {label: "EXPORT JSON", icon: 'download', strokeColor: 'primary' as IconColor, fillColor: undefined},
+                  {label: "EXPORT JSON", icon: 'download', strokeColor: 'current' as IconColor, fillColor: undefined},
                   {label: "COPY PITCH", icon: 'copy'},
                   {label: "SAVE IDEA", icon: 'save'},
                 ].map(({label, icon, ...rest}) => 
-                  <li key={label} className="flex justify-center items-center gap-x-3 w-fit cursor-pointer hover:text-primary-100 transition-colors">
-                    <Icon name={icon as  IconProps['name']} fillColor="primary" {...rest} size="large" />
+                  <li key={label} className="flex justify-start p-4 rounded-lg items-center gap-x-3 cursor-pointer hover:text-primary-200 font-semibold text-sm transition-colors bg-gray-200 hover:bg-gray-300 w-full">
+                    <Icon name={icon as  IconProps['name']} fillColor="current"  {...rest} size="medium" />
                     {label}
                   </li>
                 )
               }
             </ul>
           </SectionContainer>
+          <Alert
+            type="info"
+            title="ANALYSIS ENGINE"
+            message="Deconstructed using UnbundleAi API with architectectural Huggin Face inference model. Analysis completed in 4.2s."
+          />
         </aside>
       </div>
     </>

@@ -14,6 +14,7 @@ import TickSvg from "./tick";
 import SaveSvg from "./save";
 import DownloadSvg from "./download";
 import CopySvg from "./copy";
+import InfoSvg from "./info";
 
 export type IconColor = 'current' | 'primary' | 'primary_200' | 'secondary_50' | 'secondary' | 'secondary_200' | 'tertiary' | 'gray_400' | 'none';
 
@@ -23,7 +24,7 @@ export interface ISvgProps {
 }
 
 export interface IconProps  {
-  name: 'add' | 'arrow_right' | 'cart' | 'ride' | 'dash' | 'dir_right' | 'flash' | 'wand' | 'link' | 'stats' | 'tasks' | 'tick' | 'save' | 'download' | 'copy';
+  name: 'add' | 'arrow_right' | 'cart' | 'ride' | 'dash' | 'dir_right' | 'flash' | 'wand' | 'link' | 'stats' | 'tasks' | 'tick' | 'save' | 'download' | 'copy' | 'info';
   classes?: string;
   colorHover?: IconColor;
   fillColor?: IconColor;
@@ -47,6 +48,7 @@ const svgs = {
   save: SaveSvg,
   download: DownloadSvg,
   copy: CopySvg,
+  info: InfoSvg
 }
 
 export const Icon = (props: IconProps) => {
