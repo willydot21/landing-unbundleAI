@@ -6,6 +6,8 @@ import SectionHeader from "../components/ui/header";
 import Tags from "../components/Tags";
 import { Icon } from "../components/icons/Icon";
 import Alert from "../components/ui/alert";
+import Footer from "../components/ui/footer";
+import Percent from "../components/ui/percent";
 
 const Label = ({children}: PropsWithChildren) => {
   return (
@@ -15,30 +17,33 @@ const Label = ({children}: PropsWithChildren) => {
   );
 }
 
+const SectionFooter = () => 
+  <button className="w-full mt-2 font-mono text-sm hover:bg-gray-200 hover:text-tertiary-100 text-gray-400 font-semibold py-4 px-4 rounded-lg rounded-tl-none rounded-tr-none hover:cursor-pointer">VIEW ALL FEATURES</button>
+
 export default function Results() {
   return (
     <>
       <Navbar/>
-      <div className="flex w-full pt-32 justify-center px-4 gap-8 max-w-8xl">
+      <div className="flex w-full pt-48 justify-center px-4 gap-8 max-w-8xl">
         <aside className="w-full lg:w-3/5 flex flex-col gap-y-9">
           <SectionContainer 
-          barTitle="APP SUMMARY"
-          BarLabel={<Label>VERIFIED ANALYSIS</Label>}
+            barTitle="APP SUMMARY"
+            BarLabel={<Label>VERIFIED ANALYSIS</Label>}
           >
           <SectionHeader el="div" title="Project Nexus" size="medium" subtitle="A collaborative productivity suite focused on hyper-local team synchronization and visual task mapping for remote-first engineering teams."/>
           <Tags tags={["PRODUCTIVITY", "COLLABORATION", "B2B SAAS"]}/>
           <hr className="border-gray-200 w-full my-4"/>
-          <div className="flex flex-col w-full">
+          <div className="flex flex-col w-full gap-y-2">
             <h5 className="font-mono text-gray-400 text-xs font-semibold mb-2">MAIN PURPOSES</h5>
             <ul className="flex flex-col text-tertiary-100 font-semibold gap-y-3">
               <li className="flex justify-center items-center gap-x-3 w-fit">
-                <Icon name="tick" fillColor="secondary" strokeColor="none" size="extraLarge" />
+                <Icon name="tick" fillColor="secondary_200" strokeColor="none" size="extraLarge" />
                 Facilitate real-time collaboration among remote engineering teams through shared workspaces and visual task mapping.</li>
               <li className="flex justify-center items-center gap-x-3 w-fit">
-                <Icon name="tick" fillColor="secondary" strokeColor="none" size="extraLarge" />
+                <Icon name="tick" fillColor="secondary_200" strokeColor="none" size="extraLarge" />
                 Enhance productivity by integrating project management tools with communication features tailored for technical workflows.</li>
               <li className="flex justify-center items-center gap-x-3 w-fit">
-                <Icon name="tick" fillColor="secondary" strokeColor="none" size="extraLarge" />
+                <Icon name="tick" fillColor="secondary_200" strokeColor="none" size="extraLarge" />
                 Provide a centralized platform for code reviews, documentation, and version control to streamline development processes.</li>
             </ul>
           </div>
@@ -46,15 +51,38 @@ export default function Results() {
           <SectionContainer
           barTitle="EXTRACTED FEATURES"
           barColor="white"
+          padding={false}
+          Footer={<SectionFooter/>}
           BarLabel={<label className="text-xxs font-bold text-gray-300 text-mono"> 12 FEATURES FOUND</label>}>
-
+            <ul className="flex flex-col gap-y-6 px-8 py-4">
+              {[{name: "Real-time Node Editor", category: "CORE INTERFACE", description: ""},
+                {name: "Contextual AI Assistant", category: "AUTOMATION", description: ""},
+                {name: "SSO & Auth Integration", category: "SECURITY", description: ""}
+              ].map(({name, category}, index) => (
+                <>
+                  <li key={name} className="flex flex-row items-center justify-between">
+                    <aside className="flex flex-col gap-y-1">
+                      <h5 className="font-mono text-md font-bold text-primary-100">{name}</h5>
+                      <p className="text-xs text-gray-400 font-semibold">{category || "No category provided for this feature."}</p>
+                    </aside>
+                    <Icon name="star" fillColor="secondary_200" size="large"/>
+                  </li>
+                  {index < 2 && <hr className="border-gray-200 w-full"/>}
+                </>
+              ))
+              }
+            </ul> 
           </SectionContainer>
+          <button className="flex justify-center items-center gap-x-3 bg-secondary-200 hover:bg-primary-100 text-primary-100 transition-colors rounded-lg p-4 mt-4 font-mono font-bold hover:cursor-pointer hover:text-secondary-200">
+            <Icon name="rocket" fillColor="current" size="large" />
+            GENERATE BLUEPRINT
+          </button>
         </aside>
         <aside className="w-2/5 lg:w-1/4 flex flex-col gap-y-9">
-          <div className="flex flex-col w-full p-8 bg-white rounded-xl items-center justify-center gap-y-6 drop-shadow-black-op shadow-black-op-200 shadow-2xl">
-            <h5 className="text-tertiary-100 font-mono ">UNBUNDLING SCORE</h5>
-            <span className="w-1/2 h-30 bg-primary-200 rounded-full"></span>
-            <p className="text-tertiary-100 text-center"> High potential of micro-SaaS extraction</p>
+          <div className="flex flex-col w-full p-8 bg-white rounded-xl items-center justify-center gap-y-6 drop-shadow-black-op shadow-black-op-100 shadow-2xl">
+            <h5 className="text-gray-400 font-mono ">UNBUNDLING SCORE</h5>
+            <Percent value={75}/>
+            <p className="text-gray-500 font-semibold text-center"> High potential of micro-SaaS extraction</p>
           </div>
           <SectionContainer
             barTitle="QUICK ACTIONS"
@@ -82,6 +110,7 @@ export default function Results() {
           />
         </aside>
       </div>
+      <Footer/>
     </>
   )
 }

@@ -15,6 +15,8 @@ import SaveSvg from "./save";
 import DownloadSvg from "./download";
 import CopySvg from "./copy";
 import InfoSvg from "./info";
+import StarSvg from "./star";
+import RocketSvg from "./rocket";
 
 export type IconColor = 'current' | 'primary' | 'primary_200' | 'secondary_50' | 'secondary' | 'secondary_200' | 'tertiary' | 'gray_400' | 'none';
 
@@ -24,7 +26,7 @@ export interface ISvgProps {
 }
 
 export interface IconProps  {
-  name: 'add' | 'arrow_right' | 'cart' | 'ride' | 'dash' | 'dir_right' | 'flash' | 'wand' | 'link' | 'stats' | 'tasks' | 'tick' | 'save' | 'download' | 'copy' | 'info';
+  name: 'add' | 'arrow_right' | 'cart' | 'ride' | 'dash' | 'dir_right' | 'flash' | 'wand' | 'link' | 'stats' | 'tasks' | 'tick' | 'save' | 'download' | 'copy' | 'info' | 'star' | 'rocket';
   classes?: string;
   colorHover?: IconColor;
   fillColor?: IconColor;
@@ -48,7 +50,9 @@ const svgs = {
   save: SaveSvg,
   download: DownloadSvg,
   copy: CopySvg,
-  info: InfoSvg
+  info: InfoSvg,
+  star: StarSvg,
+  rocket: RocketSvg
 }
 
 export const Icon = (props: IconProps) => {
@@ -75,7 +79,7 @@ export const Icon = (props: IconProps) => {
     primary_200: 'stroke-primary-200',
     secondary_50: 'stroke-secondary-50',
     secondary: 'stroke-secondary-100',
-    secondary_200: 'fill-secondary-200',
+    secondary_200: 'stroke-secondary-200',
     tertiary: 'stroke-tertiary-100',
     gray_400: 'stroke-gray-400',
   }[props.strokeColor || 'none'];
