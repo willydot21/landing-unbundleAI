@@ -16,7 +16,7 @@ export default function Alert({ message, type, title }: AlertProps) {
   }
 
   return (
-    <span className={`flex flex-col gap-4 border rounded-xl p-5 ${typeStyles[type]}`}>
+    <span className={`flex flex-col gap-4 border rounded-xl p-5 ${typeStyles[type]} alert`}>
       <h5 className="flex items-center gap-x-1 w-full font-bold text-sm font-mono">
         <Icon name={type as IconProps['name']} fillColor="gray_400" size="medium"/>
         {title}

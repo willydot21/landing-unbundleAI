@@ -19,7 +19,7 @@ export default function SectionContainer({ barTitle, barColor = 'gray', BarLabel
   const paddingClasses = "px-8 py-12";
 
   return (
-    <section className="flex flex-col rounded-xl bg-white w-full drop-shadow-black-op shadow-black-op-100 shadow-2xl">
+    <section className="flex flex-col xxs:rounded-xl bg-white w-full drop-shadow-black-op shadow-black-op-100 shadow-2xl">
       <header className={"w-full flex justify-between rounded-tr-xl rounded-tl-xl items-center px-8 py-4" + ' ' + barColors[barColor]}>
         <h5 className="text-xs font-bold  font-mono text-gray-400">{barTitle}</h5>
         {BarLabel} 

@@ -24,7 +24,7 @@ export default function Results() {
   return (
     <>
       <Navbar/>
-      <div className="flex w-full pt-48 justify-center px-4 gap-8 max-w-8xl">
+      <div className="flex w-full flex-col md:flex-row pt-32 md:pt-48 justify-center xxs:px-4 gap-8 max-w-8xl">
         <aside className="w-full lg:w-3/5 flex flex-col gap-y-9">
           <SectionContainer 
             barTitle="APP SUMMARY"
@@ -35,14 +35,14 @@ export default function Results() {
           <hr className="border-gray-200 w-full my-4"/>
           <div className="flex flex-col w-full gap-y-2">
             <h5 className="font-mono text-gray-400 text-xs font-semibold mb-2">MAIN PURPOSES</h5>
-            <ul className="flex flex-col text-tertiary-100 font-semibold gap-y-3">
-              <li className="flex justify-center items-center gap-x-3 w-fit">
+            <ul className="flex flex-col text-sm sm:text-base text-tertiary-100 font-semibold gap-y-3">
+              <li className="flex justify-center items-center gap-x-3 ">
                 <Icon name="tick" fillColor="secondary_200" strokeColor="none" size="extraLarge" />
                 Facilitate real-time collaboration among remote engineering teams through shared workspaces and visual task mapping.</li>
-              <li className="flex justify-center items-center gap-x-3 w-fit">
+              <li className="flex justify-center items-center gap-x-3 ">
                 <Icon name="tick" fillColor="secondary_200" strokeColor="none" size="extraLarge" />
                 Enhance productivity by integrating project management tools with communication features tailored for technical workflows.</li>
-              <li className="flex justify-center items-center gap-x-3 w-fit">
+              <li className="flex justify-center items-center gap-x-3 ">
                 <Icon name="tick" fillColor="secondary_200" strokeColor="none" size="extraLarge" />
                 Provide a centralized platform for code reviews, documentation, and version control to streamline development processes.</li>
             </ul>
@@ -51,10 +51,9 @@ export default function Results() {
           <SectionContainer
           barTitle="EXTRACTED FEATURES"
           barColor="white"
-          padding={false}
           Footer={<SectionFooter/>}
           BarLabel={<label className="text-xxs font-bold text-gray-300 text-mono"> 12 FEATURES FOUND</label>}>
-            <ul className="flex flex-col gap-y-6 px-8 py-4">
+            <ul className="flex flex-col gap-y-6">
               {[{name: "Real-time Node Editor", category: "CORE INTERFACE", description: ""},
                 {name: "Contextual AI Assistant", category: "AUTOMATION", description: ""},
                 {name: "SSO & Auth Integration", category: "SECURITY", description: ""}
@@ -78,8 +77,8 @@ export default function Results() {
             GENERATE BLUEPRINT
           </button>
         </aside>
-        <aside className="w-2/5 lg:w-1/4 flex flex-col gap-y-9">
-          <div className="flex flex-col w-full p-8 bg-white rounded-xl items-center justify-center gap-y-6 drop-shadow-black-op shadow-black-op-100 shadow-2xl">
+        <aside className="w-full md:w-1/3 lg:w-1/4 flex flex-col gap-y-9 [&>span.alert]:rounded-none [&>span.alert]:xxs:rounded-xl">
+          <div className="flex flex-col w-full p-8 bg-white xxs:rounded-xl items-center justify-center gap-y-6 drop-shadow-black-op shadow-black-op-100 shadow-2xl">
             <h5 className="text-gray-400 font-mono ">UNBUNDLING SCORE</h5>
             <Percent value={75}/>
             <p className="text-gray-500 font-semibold text-center"> High potential of micro-SaaS extraction</p>
