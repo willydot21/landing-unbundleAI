@@ -8,6 +8,7 @@ import { Icon } from "../components/icons/Icon";
 import Alert from "../components/ui/alert";
 import Footer from "../components/ui/footer";
 import Percent from "../components/ui/percent";
+import Hr from "../components/ui/Hr";
 
 const Label = ({children}: PropsWithChildren) => {
   return (
@@ -32,19 +33,22 @@ export default function Results() {
           >
           <SectionHeader el="div" title="Project Nexus" size="medium" subtitle="A collaborative productivity suite focused on hyper-local team synchronization and visual task mapping for remote-first engineering teams."/>
           <Tags tags={["PRODUCTIVITY", "COLLABORATION", "B2B SAAS"]}/>
-          <hr className="border-gray-200 w-full my-4"/>
+          <Hr my="3" />
           <div className="flex flex-col w-full gap-y-2">
             <h5 className="font-mono text-gray-400 text-xs font-semibold mb-2">MAIN PURPOSES</h5>
-            <ul className="flex flex-col text-sm sm:text-base text-tertiary-100 font-semibold gap-y-3">
-              <li className="flex justify-center items-center gap-x-3 ">
-                <Icon name="tick" fillColor="secondary_200" strokeColor="none" size="extraLarge" />
-                Facilitate real-time collaboration among remote engineering teams through shared workspaces and visual task mapping.</li>
-              <li className="flex justify-center items-center gap-x-3 ">
-                <Icon name="tick" fillColor="secondary_200" strokeColor="none" size="extraLarge" />
-                Enhance productivity by integrating project management tools with communication features tailored for technical workflows.</li>
-              <li className="flex justify-center items-center gap-x-3 ">
-                <Icon name="tick" fillColor="secondary_200" strokeColor="none" size="extraLarge" />
-                Provide a centralized platform for code reviews, documentation, and version control to streamline development processes.</li>
+            <ul className="flex flex-col gap-y-3">
+              <li className="flex flex-row items-center gap-x-2">
+                <Icon name="tick" fillColor="secondary_200" strokeColor="none" size="large" />
+                <p className="text-sm sm:text-base text-tertiary-100 font-semibold w-5/6 xs:w-full">Facilitate real-time collaboration among remote engineering teams through shared workspaces and visual task mapping.</p>
+              </li>
+              <li className="flex flex-row items-center gap-x-2">
+                <Icon name="tick" fillColor="secondary_200" strokeColor="none" size="large" />
+                <p className="text-sm sm:text-base text-tertiary-100 font-semibold w-5/6 xs:w-full">Enhance productivity by integrating project management tools with communication features tailored for technical workflows.</p>
+              </li>
+              <li className="flex flex-row items-center gap-x-2">
+                <Icon name="tick" fillColor="secondary_200" strokeColor="none" size="large" />
+                <p className="text-sm sm:text-base text-tertiary-100 font-semibold w-5/6 xs:w-full">Provide a centralized platform for code reviews, documentation, and version control to streamline development processes.</p>
+              </li>
             </ul>
           </div>
           </SectionContainer>
@@ -66,13 +70,13 @@ export default function Results() {
                     </aside>
                     <Icon name="star" fillColor="secondary_200" size="large"/>
                   </li>
-                  {index < 2 && <hr className="border-gray-200 w-full"/>}
+                  {index < 2 && <Hr/>}
                 </>
               ))
               }
             </ul> 
           </SectionContainer>
-          <button className="flex justify-center items-center gap-x-3 bg-secondary-200 hover:bg-primary-100 text-primary-100 transition-colors rounded-lg p-4 mt-4 font-mono font-bold hover:cursor-pointer hover:text-secondary-200">
+          <button className="sticky bottom-3 mx-3 xxs:mx-0 left-0 md:relative flex justify-center items-center gap-x-3 bg-secondary-200 hover:bg-primary-100 text-primary-100 transition-colors rounded-lg p-4 mt-4 font-mono font-bold hover:cursor-pointer hover:text-secondary-200 active:text-secondary-100 drop-shadow-black-op shadow-black-op-100 shadow-2xl">
             <Icon name="rocket" fillColor="current" size="large" />
             GENERATE BLUEPRINT
           </button>
