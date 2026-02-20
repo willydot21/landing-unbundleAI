@@ -11,7 +11,7 @@
   --spacing-8xl: 1440px;
   --text-xxs: 0.6rem;
   --autofit-min: repeat(auto-fit, minmax(300px, 1fr));
-  --breakpoint-xxs: 380px;
+  --breakpoint-xxs: 400px;
 }
 
 @custom-variant child (& > *);

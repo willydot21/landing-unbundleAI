@@ -18,7 +18,7 @@ export default function Feature({title, description, iconName}: PropsWithChildre
 
   return (
     <div className="flex flex-row items-center justify-center gap-2">
-      <span className="w-9 h-9 bg-white rounded-full p-2">
+      <span className="w-9 h-9 bg-white rounded-full flex items-center justify-center">
         <Icon name={iconName} size="medium" {...colorBrush} />
       </span>
       <div>
