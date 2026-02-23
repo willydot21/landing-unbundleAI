@@ -1,13 +1,14 @@
-import type { PropsWithChildren } from "react";
+import { Children, isValidElement, type PropsWithChildren, type ReactNode } from "react";
+import {Icon} from "../icons/Icon";
 
 export interface IListItem {
   iconGap?: 'default' | 'extended';
+  variant: 'leading-icon' | 'trailing-icon' | 'text-only';
 }
 
 export interface IList {
   dense?: boolean;
 }
-
 
 export function ListItemText(
   { primaryText, secondaryText }: 
@@ -22,31 +23,64 @@ export function ListItemText(
   </>);
 }
 
-export function ListItem({ iconGap, children }: PropsWithChildren<IListItem>) {
+export function ListItem({ iconGap, children, variant = 'leading-icon'}: PropsWithChildren<IListItem>) {
 
-  const asideClases = "flex flex-col gap-y-1";
+  const asideClases = "flex flex-col w-full gap-y-1";
 
   const iconGapClasses = {
     default: "px-2",
-    extended: "px-4"
+    extended: "px-7"
   }[iconGap || 'default'];
+  
+  let icon:ReactNode = null, text:ReactNode = null;
 
-  // ADD Icon compatibility , add all gap options and dense option for the list itself to reduce padding and font size for more compact lists.
+  if (children){
+    Children.forEach(children, child => {
+    if (!isValidElement(child)) return;
+    if (child.type === Icon) icon = child;
+    if (child.type === ListItemText) text = child;
+    // You can add more conditions here for other child types if needed
+    });
+  }
+
+  const orderedContent = {
+    "leading-icon": (
+      <>
+        {icon}
+        <aside className={asideClases + " " + icon && iconGapClasses}>
+          {text}
+        </aside>
+      </>
+    ),
+    "trailing-icon": (
+      <>
+        <aside className={asideClases}>
+          {text}
+        </aside>
+        {icon}
+      </>
+    ),
+    "text-only": <>{text}</>
+  }[variant];
 
   return (
-    <li className="flex flex-row items-center">
-      <aside className={asideClases + " " + iconGapClasses}>
-        {children}
-      </aside>
+    <li className="flex flex-row items-center w-full">
+      {orderedContent}
     </li>
   )
 }
 
-export default function List() {
+export default function List({ dense = false, children }: PropsWithChildren<IList>) {
+
+  const listStyle = {
+    dense: dense ? 'gap-y-2' : 'gap-y-6'
+  };
+
+  // Add hr between items except the last one
 
   return (
-    <ul>
-
+    <ul className={"flex flex-col w-full max-w-2xl my-auto " + listStyle.dense}>
+      {children}
     </ul>
   )
 }
