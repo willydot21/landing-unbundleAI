@@ -9,6 +9,7 @@ import Alert from "../components/ui/alert";
 import Footer from "../components/ui/footer";
 import Percent from "../components/ui/percent";
 import Hr from "../components/ui/Hr";
+import List, { ListItem, ListItemText } from "../components/list";
 
 const Label = ({children}: PropsWithChildren) => {
   return (
@@ -36,20 +37,20 @@ export default function Results() {
           <Hr my="3" />
           <div className="flex flex-col w-full gap-y-2">
             <h5 className="font-mono text-gray-400 text-xs font-semibold mb-2">MAIN PURPOSES</h5>
-            <ul className="flex flex-col gap-y-3">
-              <li className="flex flex-row items-center gap-x-2">
+          <List dense>
+              <ListItem variant="leading-icon" iconGap="extended">
                 <Icon name="tick" fillColor="secondary_200" strokeColor="none" size="large" />
-                <p className="text-sm sm:text-base text-tertiary-100 font-semibold w-5/6 xs:w-full">Facilitate real-time collaboration among remote engineering teams through shared workspaces and visual task mapping.</p>
-              </li>
-              <li className="flex flex-row items-center gap-x-2">
+                <ListItemText primaryText="Facilitate real-time collaboration among remote engineering teams through shared workspaces and visual task mapping."/>
+              </ListItem>
+              <ListItem variant="leading-icon" iconGap="extended">
                 <Icon name="tick" fillColor="secondary_200" strokeColor="none" size="large" />
-                <p className="text-sm sm:text-base text-tertiary-100 font-semibold w-5/6 xs:w-full">Enhance productivity by integrating project management tools with communication features tailored for technical workflows.</p>
-              </li>
-              <li className="flex flex-row items-center gap-x-2">
+                <ListItemText primaryText="Enhance productivity by integrating project management tools with communication features tailored for technical workflows."/>
+              </ListItem>
+              <ListItem variant="leading-icon" iconGap="extended">
                 <Icon name="tick" fillColor="secondary_200" strokeColor="none" size="large" />
-                <p className="text-sm sm:text-base text-tertiary-100 font-semibold w-5/6 xs:w-full">Provide a centralized platform for code reviews, documentation, and version control to streamline development processes.</p>
-              </li>
-            </ul>
+                <ListItemText primaryText="Provide a centralized platform for code reviews, documentation, and version control to streamline development processes."/>
+              </ListItem>
+            </List>
           </div>
           </SectionContainer>
           <SectionContainer

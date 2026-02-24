@@ -1,5 +1,15 @@
+
+/**
+ 
+ * TODO:
+ *  - [ ] Add support for more child types in ListItem (e.g., Avatar, Badge, etc.)
+ *  - [ ] Refactor ListItem to handle more complex layouts, and List Component to support more styling options.
+
+**/
+
 import { Children, isValidElement, type PropsWithChildren, type ReactNode } from "react";
 import {Icon} from "../icons/Icon";
+import Hr from "../ui/Hr";
 
 export interface IListItem {
   iconGap?: 'default' | 'extended';
@@ -8,14 +18,33 @@ export interface IListItem {
 
 export interface IList {
   dense?: boolean;
+  withHr?: boolean;
 }
 
 export function ListItemText(
   { primaryText, secondaryText }: 
   { primaryText: string; secondaryText?: string }) {
+    
+  
+  let primaryClasses = "";
+  let secondaryClasses = "";
+  
+  const textStyle = {
+    textOnly: {
+      primary: "text-sm sm:text-base font-semibold text-tertiary-100",
+    },
+    multiText: {
+      primary: "text-md font-mono font-bold text-primary-100",
+      secondary: "text-xs text-gray-400 font-semibold"
+    }
+  }
 
-  const primaryClasses = "font-mono text-md font-bold text-primary-100";
-  const secondaryClasses = "text-xs text-gray-400 font-semibold";
+  if (secondaryText) {
+    primaryClasses = textStyle.multiText.primary;
+    secondaryClasses = textStyle.multiText.secondary;
+  } else {
+    primaryClasses = textStyle.textOnly.primary;
+  }
 
   return (<>
     <h5 className={primaryClasses}>{primaryText}</h5>
@@ -25,11 +54,14 @@ export function ListItemText(
 
 export function ListItem({ iconGap, children, variant = 'leading-icon'}: PropsWithChildren<IListItem>) {
 
-  const asideClases = "flex flex-col w-full gap-y-1";
+  const asideClases = "flex flex-col gap-y-1 w-5/6 xs:w-full";
+
+
+  // FIX GAP ISSUE ItS A MESS RN, PROBABLY NEEDS REFACTORING
 
   const iconGapClasses = {
-    default: "px-2",
-    extended: "px-7"
+    default: "pl-2",
+    extended: "pl-6"
   }[iconGap || 'default'];
   
   let icon:ReactNode = null, text:ReactNode = null;
@@ -64,23 +96,34 @@ export function ListItem({ iconGap, children, variant = 'leading-icon'}: PropsWi
   }[variant];
 
   return (
-    <li className="flex flex-row items-center w-full">
+    <li className="flex flex-row items-center">
       {orderedContent}
     </li>
   )
 }
 
-export default function List({ dense = false, children }: PropsWithChildren<IList>) {
-
+export default function List({ dense = false, withHr = false, children }: PropsWithChildren<IList>) {
+  
+  let childrenWithHr: ReactNode[] = [];
   const listStyle = {
-    dense: dense ? 'gap-y-2' : 'gap-y-6'
+    dense: dense ? 'gap-y-3' : 'gap-y-6'
   };
 
-  // Add hr between items except the last one
+  if (withHr && children) {
+    Children.forEach(children, (child, index) => {
+      if (!isValidElement(child)) return;
+      childrenWithHr.push(child);
+      if (index < Children.count(children) - 1) {
+        childrenWithHr.push(
+          dense ? <Hr my="none" /> : <Hr my="1" />
+        );
+      }
+    });
+  }
 
   return (
-    <ul className={"flex flex-col w-full max-w-2xl my-auto " + listStyle.dense}>
-      {children}
+    <ul className={"flex flex-col w-full " + listStyle.dense}>
+      { withHr ? childrenWithHr : children }
     </ul>
   )
 }

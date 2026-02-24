@@ -9,7 +9,7 @@ import { Icon } from "./components/icons/Icon";
 
 function ListTest() {
   return (
-    <List>
+    <List withHr dense>
       <ListItem variant="leading-icon" iconGap="extended">
         <ListItemText primaryText="Leading Icon" secondaryText="SECONDARY TEXT"/> 
         <Icon name="tick" fillColor="secondary_200" strokeColor="none" size="large" /> 
