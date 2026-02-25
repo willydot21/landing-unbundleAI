@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from "react";
-import {Icon} from "../icons/Icon";
+import {Icon} from "../../icons/Icon";
 import ExampleCard, {type IExample} from "./example-card";
 
 interface IExamplesProps extends PropsWithChildren {

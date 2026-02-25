@@ -2,8 +2,8 @@
 /**
  
  * TODO:
- *  - [ ] Add support for more child types in ListItem (e.g., Avatar, Badge, etc.)
- *  - [ ] Refactor ListItem to handle more complex layouts, and List Component to support more styling options.
+ *  -- Add support for more child types in ListItem (e.g., Avatar, Badge, etc.)
+ *  -- Refactor ListItem to handle more complex layouts, and List Component to support more styling options.
 
 **/
 
@@ -52,16 +52,13 @@ export function ListItemText(
   </>);
 }
 
-export function ListItem({ iconGap, children, variant = 'leading-icon'}: PropsWithChildren<IListItem>) {
+export function ListItem({ iconGap, children, variant}: PropsWithChildren<IListItem>) {
 
-  const asideClases = "flex flex-col gap-y-1 w-5/6 xs:w-full";
-
-
-  // FIX GAP ISSUE ItS A MESS RN, PROBABLY NEEDS REFACTORING
+  const asideClases = "flex flex-col gap-y-1 w-full";
 
   const iconGapClasses = {
-    default: "pl-2",
-    extended: "pl-6"
+    default: "gap-x-2",
+    extended: "gap-x-6"
   }[iconGap || 'default'];
   
   let icon:ReactNode = null, text:ReactNode = null;
@@ -79,7 +76,7 @@ export function ListItem({ iconGap, children, variant = 'leading-icon'}: PropsWi
     "leading-icon": (
       <>
         {icon}
-        <aside className={asideClases + " " + icon && iconGapClasses}>
+        <aside className={asideClases}>
           {text}
         </aside>
       </>
@@ -95,8 +92,10 @@ export function ListItem({ iconGap, children, variant = 'leading-icon'}: PropsWi
     "text-only": <>{text}</>
   }[variant];
 
+  const gapClasses = (variant === 'leading-icon') && iconGapClasses;
+
   return (
-    <li className="flex flex-row items-center">
+    <li className={"flex flex-row items-center " + gapClasses}>
       {orderedContent}
     </li>
   )

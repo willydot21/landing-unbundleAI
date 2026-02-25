@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from "react";
-import { Icon } from "../icons/Icon";
+import { Icon } from "../../icons/Icon";
 
 export interface IFeatureInfo {
   title: string;

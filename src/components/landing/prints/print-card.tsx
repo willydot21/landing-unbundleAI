@@ -1,6 +1,6 @@
 
 import type { PropsWithChildren } from "react";
-import { Icon } from "../icons/Icon";
+import { Icon } from "../../icons/Icon";
 
 export interface IPrint {
   iconName: 'cart' | 'dash' | 'ride';

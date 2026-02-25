@@ -1,4 +1,4 @@
-import AnalyzeInput from "../components/hero/analyze-input";
+import AnalyzeInput from "../components/landing/hero/analyze-input";
 import Layout from "./layout";
 
 const Hero = () => {

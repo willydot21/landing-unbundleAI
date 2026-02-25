@@ -1,5 +1,5 @@
 import PrintCard, { type IPrint } from "./print-card";
-import { Icon } from "../icons/Icon";
+import { Icon } from "../../icons/Icon";
 
 export default function Blueprints({prints}: {prints: IPrint[]}) {
   return (

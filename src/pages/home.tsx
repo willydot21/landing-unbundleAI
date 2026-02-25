@@ -1,7 +1,7 @@
 import Layout from "./layout";
-import ActionHero from "../components/hero";
-import Blueprints from "../components/prints";
-import { type IPrint } from "../components/prints/print-card";
+import ActionHero from "../components/landing/hero";
+import Blueprints from "../components/landing/prints";
+import { type IPrint } from "../components/landing/prints/print-card";
 
 const prints = [
   {title: 'E-commerce', description: "Complete breakdown of Shopify's checkout process including payment gateway integration", version: 'v1.2', iconName: 'cart' as IPrint['iconName']},
