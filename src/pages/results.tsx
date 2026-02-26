@@ -13,6 +13,7 @@ import AppSummary from "../components/results/summary";
 import QuickActions from "../components/results/quick-actions";
 import ScoreCard from "../components/results/score-card";
 import BluePrintButton from "../components/results/blueprint-button";
+import PublicPerception from "../components/results/public-perception";
 
 
 const features = [
@@ -29,6 +30,11 @@ const app = {
     "Facilitate real-time collaboration among remote engineering teams through shared workspaces and visual task mapping.",
     "Enhance productivity by integrating project management tools with communication features tailored for technical workflows.",
     "Provide a centralized platform for code reviews, documentation, and version control to streamline development processes."
+  ],
+  publicPerception: [
+    "Highly anticipated launch with strong interest from remote engineering communities.",
+    "Positive early feedback on the concept of visual task mapping and integrated collaboration features.",
+    "Concerns about potential learning curve and integration with existing tools in development workflows."
   ]
 }
 
@@ -44,6 +50,7 @@ export default function Results() {
         </aside>
         <aside className="w-full md:w-1/3 lg:w-1/4 flex flex-col gap-y-9 [&>span.alert]:rounded-none [&>span.alert]:xxs:rounded-xl">
           <ScoreCard value={78} description="High potential of micro-SaaS extraction"/>
+          <PublicPerception data={app.publicPerception} />
           <QuickActions/>
           <Alert
             type="info"
