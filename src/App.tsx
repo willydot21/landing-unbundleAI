@@ -7,6 +7,17 @@ import List, {ListItem, ListItemText} from "./components/list";
 import { Icon } from "./components/icons/Icon";
 
 
+
+
+/****
+ *  TODO:
+ *  --- Implement state management for app data and analysis results using Context API or Redux
+ *  --- Integrate with backend API for dynamic data fetching and analysis results
+ * 
+ */
+
+
+
 function ListTest() {
   return (
     <List withHr dense>

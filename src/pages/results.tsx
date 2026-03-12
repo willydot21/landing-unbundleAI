@@ -14,6 +14,7 @@ import QuickActions from "../components/results/quick-actions";
 import ScoreCard from "../components/results/score-card";
 import BluePrintButton from "../components/results/blueprint-button";
 import PublicPerception from "../components/results/public-perception";
+import NotableAssumptions from "../components/results/notable-asumptions";
 
 
 const features = [
@@ -35,7 +36,8 @@ const app = {
     "Highly anticipated launch with strong interest from remote engineering communities.",
     "Positive early feedback on the concept of visual task mapping and integrated collaboration features.",
     "Concerns about potential learning curve and integration with existing tools in development workflows."
-  ]
+  ],
+  notableAssumptions: ["Cross Platform", "Open Source", "Community Driven"]
 }
 
 export default function Results() {
@@ -51,6 +53,7 @@ export default function Results() {
         <aside className="w-full md:w-1/3 lg:w-1/4 flex flex-col gap-y-9 [&>span.alert]:rounded-none [&>span.alert]:xxs:rounded-xl">
           <ScoreCard value={78} description="High potential of micro-SaaS extraction"/>
           <PublicPerception data={app.publicPerception} />
+          <NotableAssumptions data={app.notableAssumptions}/>
           <QuickActions/>
           <Alert
             type="info"
