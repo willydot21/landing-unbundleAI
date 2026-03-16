@@ -6,7 +6,7 @@ const SectionFooter = () =>
   <button className="w-full mt-2 font-mono text-sm hover:bg-gray-200 hover:text-tertiary-100 text-gray-400 font-semibold py-4 px-4 rounded-lg rounded-tl-none rounded-tr-none hover:cursor-pointer">VIEW ALL FEATURES</button>
 
 
-export default function Features({features}: { features: {name: string, category: string, description: string}[] }) {
+export default function Features({features}: { features: {name: string, category: string, short_desc: string}[] }) {
   return (
     <SectionContainer
       barTitle="EXTRACTED FEATURES"
