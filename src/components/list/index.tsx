@@ -54,7 +54,7 @@ export function ListItemText(
 
 export function ListItem({ iconGap, children, variant}: PropsWithChildren<IListItem>) {
 
-  const asideClases = "flex flex-col gap-y-1 w-full";
+  const asideClases = "flex flex-col w-full";
 
   const iconGapClasses = {
     default: "gap-x-2",

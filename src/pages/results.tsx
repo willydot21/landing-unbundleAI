@@ -15,53 +15,49 @@ import ScoreCard from "../components/results/score-card";
 import BluePrintButton from "../components/results/blueprint-button";
 import PublicPerception from "../components/results/public-perception";
 import NotableAssumptions from "../components/results/notable-asumptions";
+import useFetch from "../hooks/useFetch";
+import type{ IAnalyzeResult } from "../services/types";
 
-
-const features = [
-  {name: "Real-time Node Editor", category: "CORE INTERFACE", description: ""},
-  {name: "Contextual AI Assistant", category: "AUTOMATION", description: ""},
-  {name: "SSO & Auth Integration", category: "SECURITY", description: ""}
-];
-
-const app = {
-  name: "Project Nexus",
-  description: "A collaborative productivity suite focused on hyper-local team synchronization and visual task mapping for remote-first engineering teams.",
-  tags: ["PRODUCTIVITY", "COLLABORATION", "B2B SAAS"],
-  purposes: [
-    "Facilitate real-time collaboration among remote engineering teams through shared workspaces and visual task mapping.",
-    "Enhance productivity by integrating project management tools with communication features tailored for technical workflows.",
-    "Provide a centralized platform for code reviews, documentation, and version control to streamline development processes."
-  ],
-  publicPerception: [
-    "Highly anticipated launch with strong interest from remote engineering communities.",
-    "Positive early feedback on the concept of visual task mapping and integrated collaboration features.",
-    "Concerns about potential learning curve and integration with existing tools in development workflows."
-  ],
-  notableAssumptions: ["Cross Platform", "Open Source", "Community Driven"]
-}
 
 export default function Results() {
+
+
+  // REWRITE API MERGE, API RESPONSE DOESN'T MATCH THE DEFINED TYPE, NEEDS REWORK
+
+  const { data: app, loading} = useFetch<IAnalyzeResult>("http://localhost:8000/analyze", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ text: "Spotify" }),
+  })
+
   return (
     <>
       <Navbar/>
-      <div className="flex w-full flex-col md:flex-row pt-32 md:pt-48 justify-center xxs:px-4 gap-8 max-w-8xl">
-        <aside className="w-full lg:w-3/5 flex flex-col gap-y-9">
-          <AppSummary {...app}/>
-          <Features features={features}/>
-          <BluePrintButton/>
-        </aside>
-        <aside className="w-full md:w-1/3 lg:w-1/4 flex flex-col gap-y-9 [&>span.alert]:rounded-none [&>span.alert]:xxs:rounded-xl">
-          <ScoreCard value={78} description="High potential of micro-SaaS extraction"/>
-          <PublicPerception data={app.publicPerception} />
-          <NotableAssumptions data={app.notableAssumptions}/>
-          <QuickActions/>
-          <Alert
-            type="info"
-            title="ANALYSIS ENGINE"
-            message="Deconstructed using UnbundleAi API with architectectural Huggin Face inference model. Analysis completed in 4.2s."
-          />
-        </aside>
+      {
+        loading ?
+        <span>Loading...</span>
+        :
+        <div className="flex w-full flex-col md:flex-row pt-32 md:pt-48 justify-center xxs:px-4 gap-8 max-w-8xl">
+          <aside className="w-full lg:w-3/5 flex flex-col gap-y-9">
+            <AppSummary {...(app as IAnalyzeResult).parsed}/>
+            <Features features={(app as IAnalyzeResult).parsed.features} />
+            <BluePrintButton/>
+          </aside>
+          <aside className="w-full md:w-1/3 lg:w-1/4 flex flex-col gap-y-9 [&>span.alert]:rounded-none [&>span.alert]:xxs:rounded-xl">
+            <ScoreCard value={78} description="High potential of micro-SaaS extraction"/>
+            <PublicPerception data={(app as IAnalyzeResult).parsed.publicPerception} />
+            <NotableAssumptions data={(app as IAnalyzeResult).parsed.notableAssumptions}/>
+            <QuickActions/>
+            <Alert
+              type="info"
+              title="ANALYSIS ENGINE"
+              message="Deconstructed using UnbundleAi API with architectectural Huggin Face inference model. Analysis completed in 4.2s."
+            />
+          </aside>
       </div>
+      }
       <Footer/>
     </>
   )
