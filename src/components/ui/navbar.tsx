@@ -32,8 +32,8 @@ export default function Navbar() {
       </aside>
       <aside data-active={menuOpen} className={_content}>
         <ul className="flex text-tertiary-100 gap-x-7 w-1/2 justify-center max-md:group-data-[active=true]:flex-col group-data-[active=true]:justify-center group-data-[active=true]:text-center max-md:group-data-[active=true]:w-full group-data-[active=true]:gap-y-15">
-          <li><a href="#" className="hover:text-primary-100 font-semibold group-data-[active=true]:hover:text-secondary-50">Deconstruct</a></li>
-          <li><a href="#" className="hover:text-primary-100 font-semibold group-data-[active=true]:hover:text-secondary-50">Blueprints</a></li>
+          <li><a href="/analyze" className="hover:text-primary-100 font-semibold group-data-[active=true]:hover:text-secondary-50">Deconstruct</a></li>
+          <li><a href="/blueprint" className="hover:text-primary-100 font-semibold group-data-[active=true]:hover:text-secondary-50">Blueprints</a></li>
           <li><a href="#" className="hover:text-primary-100 font-semibold group-data-[active=true]:hover:text-secondary-50">History</a></li>
         </ul>
         <ul className="flex gap-x-2 md:gap-x-4 w-1/2 justify-end max-md:group-data-[active=true]:justify-center group-data-[active=true]:text-center max-md:group-data-[active=true]:w-full max-md:group-data-[active=true]:gap-x-10">

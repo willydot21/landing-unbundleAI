@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router";
 import Home from "./pages/home";
 import Analyze from "./pages/analyze";
 import Results from "./pages/results";
+import Blueprint from "./pages/blueprint";
 import List, {ListItem, ListItemText} from "./components/list";
 import { Icon } from "./components/icons/Icon";
 
@@ -44,8 +45,9 @@ function App() {
       <Route path="/" element={<Home/>}/>
       <Route path="analyze">
         <Route index element={<Analyze/>} /> 
-        <Route path="results/:id" element={<Results/>}/>
+        <Route path="results/:id?" element={<Results/>}/>
       </Route>
+      <Route path="blueprint" element={<Blueprint/>} />
     </Routes> 
   )
 }

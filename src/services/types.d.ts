@@ -30,5 +30,6 @@ export interface IAnalyzeResult {
     name: string;
     short_desc: string;
     category: string;
-  }[]
+  }[];
+  score?: number;
 }

@@ -32,3 +32,43 @@ export function analyzeApp(text?: string) {
     }
   ];
 }
+
+export async function postAnalyze(text: string) {
+  const response = await fetch(apiUrl + "/analyze", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ text }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Analyze API failed: ${response.status}`);
+  }
+
+  const data = await response.json();
+  return data as IApiAnalyzeResult;
+}
+
+export async function fetchBlueprint(featureJson: string) {
+  const response = await fetch(apiUrl + "/blueprint", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ feature_json: featureJson }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Blueprint API failed: ${response.status}`);
+  }
+
+  const contentType = response.headers.get("content-type") || "";
+  if (contentType.includes("application/json")) {
+    const data = await response.json();
+    if (typeof data === "string") return data;
+    return data.blueprint || data.result || JSON.stringify(data, null, 2);
+  }
+
+  return response.text();
+}
