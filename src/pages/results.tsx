@@ -17,45 +17,44 @@ import PublicPerception from "../components/results/public-perception";
 import NotableAssumptions from "../components/results/notable-asumptions";
 import useFetch from "../hooks/useFetch";
 import type{ IAnalyzeResult, IApiAnalyzeResult } from "../services/types";
-import { useCallback, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router";
+import { analyzeApp, mockData } from "../services/unbundle-api";
 
+
+const SkeletonResults = () => {
+  return (
+    <div className="flex w-full flex-col md:flex-row pt-32 md:pt-48 justify-center xxs:px-4 gap-8 max-w-8xl">
+      <aside className="w-full lg:w-3/5 flex flex-col gap-y-9">
+        <div className="w-full min-h-4/12 bg-gray-300 animate-pulse rounded-xl"/>
+        <div className="w-full min-h-4/12 bg-gray-300 animate-pulse rounded-xl"/>
+        <div className="w-full min-h-16 bg-gray-300 animate-pulse rounded-xl"/>
+      </aside>
+      <aside className="w-full md:w-1/3 lg:w-1/4 flex flex-col gap-y-9 [&>span.alert]:rounded-none [&>span.alert]:xxs:rounded-xl">
+        <div className="w-full min-h-80 bg-gray-300 animate-pulse rounded-xl"/>
+        <div className="w-full min-h-80 bg-gray-300 animate-pulse rounded-xl"/>
+        <div className="w-full min-h-64 bg-gray-300 animate-pulse rounded-xl"/>
+        <div className="w-full min-h-64 bg-gray-300 animate-pulse rounded-xl"/>
+        <div className="w-full min-h-40 bg-gray-300 animate-pulse rounded-xl"/>
+      </aside>
+
+    </div>
+  )
+}
 
 export default function Results() {
 
 
   const params = useParams();
   const id = params.id || "youtube";
-  
-  const { data, loading} = useFetch<IApiAnalyzeResult>("http://localhost:8000/analyze", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ text: id }),
-  })
+  const [url, options] = analyzeApp(id) as [string, RequestInit];
+  const { data, loading} = useFetch<IApiAnalyzeResult>(url, options);
 
   const [app, setApp] = useState<IAnalyzeResult | null>(null);
 
-  const parseData =  useCallback(() => {
-    if (!data) return null;
-    return {
-      name: data.parsed.name,
-      description: data.parsed.description,
-      tags: data.parsed.tags,
-      targetUsers: data.parsed.target_users,
-      purposes: data.parsed.main_purposes,
-      features: data.parsed.high_level_features,
-      publicPerception: data.parsed.public_perception,
-      notableAssumptions: data.parsed.notable_tech_assumptions
-    }
-  }, [data]);
-
   useEffect(() => {
-    console.log(data);
-    const parsed = parseData();
-    if (parsed) {
-      setApp(parsed);
+    if (data) {
+      setApp(mockData(data as IApiAnalyzeResult));
     }
   }, [data]);
 
@@ -67,7 +66,7 @@ export default function Results() {
       <Navbar/>
       {
         (loading || !app) ?
-        <span>Loading...</span>
+        <SkeletonResults/>
         :
         <div className="flex w-full flex-col md:flex-row pt-32 md:pt-48 justify-center xxs:px-4 gap-8 max-w-8xl">
           <aside className="w-full lg:w-3/5 flex flex-col gap-y-9">
